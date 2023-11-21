@@ -67,3 +67,51 @@
     margin-top: -155px;
     margin-bottom: 100px;
 }
+.prodCont{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+
+}
+.prodSide{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+.prodList{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    
+}
+.items{
+    border: 1px solid;
+    width: 350px;
+    height: 400px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.forI{
+    width: 180px;
+    height: 20px;
+}
+.forP{
+    width: 180px;
+    height: 20px;
+    margin-top: 20px;
+}
+.addBtn{
+    width: 180px;
+    height: 20px;
+    border: none;
+    background-color: aqua;
+    margin-top: 30px;
+}
