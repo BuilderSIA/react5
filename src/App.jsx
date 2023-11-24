@@ -81,6 +81,7 @@ function App() {
     setPname(oldItem.name)
     setPrice(oldItem.price)
     setModal(!modal)
+    setEdit(true)
   }
 
 
