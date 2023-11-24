@@ -6,7 +6,9 @@ import Products from './components/Products';
 import Err from './components/err';
 import { getStore } from './Utilits';
 import { uid } from 'uid';
-import Edit from './components/Edit';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import Profile from './components/Profile';
 
 
 
@@ -44,16 +46,13 @@ function App() {
   }
 
   const addProduct = () =>{
-    //  const newProduct = { id:id, name:pname, price:price}
-    //  setProducts([...products, newProduct])
-
-
     if(!name && !price){
       console.log("Error");
     } else if(pname && edit){
       setProducts(products.map((item) => {
         if(item.id === editID){
           return {...item, name: pname, price:price}
+        
         }
         return item
       }))
@@ -61,12 +60,15 @@ function App() {
       const newProduct = { id:id, img:img, name:pname,price:price}
       setProducts([...products , newProduct])
     }
-
-
-
-
   }
 
+
+  const signOut = () =>{
+    localStorage.removeItem('user');
+    location.pathname = '/'
+
+ 
+  }
 
 
   const deleteProd = (id) =>{
@@ -86,7 +88,6 @@ function App() {
 
 
   useEffect(()=>{
-    // e.preventDeafult()
     localStorage.setItem('user', JSON.stringify(user))
     localStorage.setItem('product',JSON.stringify(products))
   },[user,products])
@@ -94,37 +95,47 @@ function App() {
 
 
 
-  
-
-
-
-  // const handProd = () =>{
-  //   if(!name && !price){
-  //     console.log("Error");
-  //   } else if(name && edit){
-  //     setAllprod(product.map((item) => {
-  //       if(item.id === editID){
-  //         return {...item, pname: name, price:price}
-  //       }
-  //       return item
-  //     }))
-
-  //   }else{
-  //     const newProd = { id:id, img:img, name:pname,price:price}
-  //     setAllprod([...allProd , newProd])
-  //   }
-    
-  // }
-
-
-
-
-
   return (
     <>
-      <Navbar login={login} setLogin={setLogin} name={name} setName={setName} user={user} />
-      { login ? <Login login={login} setLogin={setLogin} name={name} setName={setName} psw={psw} setPsw={setPsw} handSignIn={handSignIn} /> : <Err name={name} user={user} />}
-      { user.name ? <Products products={products} setProducts={setProducts} addProduct={addProduct} editProd={editProd} modal={modal} setModal={setModal} deleteProd={deleteProd} pname={pname} setPname={setPname} price={price} setPrice={setPrice} /> : <Err name={name} user={user} />}
+    
+    <Navbar 
+    login={login} 
+    setLogin={setLogin} 
+    name={name} 
+    setName={setName} 
+    user={user} />
+
+
+    <Routes>
+    <Route path='/' element={<Home />}  />
+      <Route path='login' element={ login ? <Login
+                                            login={login} 
+                                            setLogin={setLogin} 
+                                            name={name} 
+                                            setName={setName} 
+                                            psw={psw} 
+                                            setPsw={setPsw} 
+                                            handSignIn={handSignIn} 
+                                            /> : < Profile 
+                                                  signOut={signOut} />}/>  
+      <Route path='products' element={ user.name ? <Products 
+                                                    products={products} 
+                                                    setProducts={setProducts} 
+                                                    addProduct={addProduct} 
+                                                    editProd={editProd} 
+                                                    modal={modal} 
+                                                    setModal={setModal} 
+                                                    deleteProd={deleteProd} 
+                                                    pname={pname} 
+                                                    setPname={setPname} 
+                                                    price={price} 
+                                                    setPrice={setPrice} 
+                                                    /> : <Err 
+                                                          name={name} 
+                                                          user={user} />} />
+    </Routes>
+    
+      
     </>
   )
   }

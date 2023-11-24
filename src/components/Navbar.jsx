@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 function Navbar({login , setLogin, name,user}) {
@@ -5,25 +6,21 @@ function Navbar({login , setLogin, name,user}) {
         <div className="navbar">
             <ul className="navlist">
                 <li>
-                    <a href="">
-                        Home
-                    </a>
+                    <Link to='/' >
+                    Home
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        Categories
-                    </a>
+                    <Link to='products' >
+                    Products
+                    </Link>
                 </li>
                 <li>
-                    <a href="">
-                        About us
-                    </a>
-                </li>
-                <li>
-                    {!user.name ?
-                     <button onClick={()=> setLogin(!login)}>
+                    <Link to={'login'} >
+                    {!user.name ? <button onClick={()=> setLogin(!login)}>
                         {user.name ? user.name : 'Sign in'}
                      </button> : <button> {user.name}</button>}
+                    </Link>
                 </li>
                 
             </ul>

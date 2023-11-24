@@ -1,9 +1,14 @@
 import React from 'react';
 
-function Profile(props) {
+function Profile({signOut}) {
     return (
         <div>
-            Info
+            <h2>
+                Profile
+            </h2>
+            <button onClick={()=>signOut()} >
+                Sign out
+            </button>
         </div>
     );
 }

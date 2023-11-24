@@ -1,6 +1,7 @@
 *{
     text-decoration: none;
     margin: 0;
+    overflow-x: hidden;
 }
 .navbar{
     height: 100px;
