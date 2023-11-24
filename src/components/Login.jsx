@@ -3,16 +3,16 @@
 function Login({login, setLogin, name, setName, psw, setPsw, handSignIn}){
     return (
         <div className="logCont">
-            <div className="login">
+            <form className="login"  onSubmit={handSignIn}>
                 <button onClick={()=>setLogin(!login)} className="closeBtn">
                     x
                 </button>
                 <input type="text" className="logInput" value={name} onChange={(e)=>setName(e.target.value)} />
                 <input type="password" className="logInput" />
-                <button onClick={()=>handSignIn()} className="logBtn">
+                <button className="logBtn">
                     Sign in
                 </button>
-            </div>
+            </form>
         </div>
     );
 }

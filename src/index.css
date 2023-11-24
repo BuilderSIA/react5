@@ -1,5 +1,6 @@
 *{
     text-decoration: none;
+    margin: 0;
 }
 .navbar{
     height: 100px;
@@ -104,10 +105,12 @@
     height: 20px;
 }
 .forP{
+    display: block;
     width: 180px;
     height: 20px;
     margin-top: 20px;
 }
+
 .addBtn{
     width: 180px;
     height: 20px;

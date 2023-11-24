@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import './App.css'
+import './App.css';
 import Login from './components/Login';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar';
 import Products from './components/Products';
 import Err from './components/err';
 import { getStore } from './Utilits';
@@ -12,68 +12,120 @@ import Edit from './components/Edit';
 
 
 const img = 'https://picsum.photos/id/237/200/300';
-const getUser = getStore('user')
-const getProduct = getStore('Product')
+const getUser = getStore('user');
+const getProduct = getStore('product');
 
 
 
 
 
 function App() {
-  const [login, setLogin] = useState(false)
-  const [name,setName] = useState('')
-  const [email,setEmail] = useState('')
-  const [psw,setPsw] = useState('')
-  const [user,setUser] = useState(getUser)
-  const [pname,setPname] = useState('')
-  const [price,setPrice] = useState('')
-  const [allProd,setAllprod] = useState(getProduct)
-  const [id,setId] = useState('')
-  const [editId,setEditId] = useState('')
+  const toCent =  document.querySelector('.prodCont');
+  const toNone =  document.querySelector('.prodList');
+  const [login, setLogin] = useState(false);
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [psw,setPsw] = useState('');
+  const [user,setUser] = useState(getUser);
+  const [pname,setPname] = useState('');
+  const [price,setPrice] = useState('');
+  const [products,setProducts] = useState(getProduct);
+  const [modal,setModal] = useState(false);
+  const [edit,setEdit] = useState(false);
+  const [editID,setEditID] = useState(null);
+  
 
-
+  const id = uid();
 
 
   const handSignIn = () =>{
-    const newUser = {name: name, password: psw};
+    const newUser = { name: name, password: psw};
     setUser(newUser)
   }
-  const handProd = () =>{
-    const newProd = { id:id, name:pname,price:price}
-    setAllprod([...allProd , newProd])
+
+  const addProduct = () =>{
+    //  const newProduct = { id:id, name:pname, price:price}
+    //  setProducts([...products, newProduct])
+
+
+    if(!name && !price){
+      console.log("Error");
+    } else if(pname && edit){
+      setProducts(products.map((item) => {
+        if(item.id === editID){
+          return {...item, name: pname, price:price}
+        }
+        return item
+      }))
+    }else{
+      const newProduct = { id:id, img:img, name:pname,price:price}
+      setProducts([...products , newProduct])
+    }
+
+
+
+
   }
+
+
+
   const deleteProd = (id) =>{
-    const newProds = allProd.filter((item)=> item.id !== id);
-    setAllprod(newProds)
+    const newProds = products.filter((item)=> item.id !== id);
+    setProducts(newProds)
   }
-  const handEditId=(id) =>{
-    setEditId(id);
-    editProd(id)
-    // const item = document.querySelector('.prodCont');
-    // const item2 = document.querySelector('.prodTitle');
-    // item.style.display = 'none'
-    // item2.style.display = 'none'
-  }
+  
   const editProd = (id) =>{
-    const oldProds = allProd.filter((item)=> item.id !== id);
-    const newProd = allProd.filter((item)=> item.id === id);
-    setAllprod(newProd)
+    // toCent.style.margin = "0"
+    const oldItem = products.find((item) => item.id === id);
+    setEditID(id)
+    setPname(oldItem.name)
+    setPrice(oldItem.price)
+    setModal(!modal)
   }
 
 
   useEffect(()=>{
     // e.preventDeafult()
     localStorage.setItem('user', JSON.stringify(user))
-    localStorage.setItem('product',JSON.stringify(allProd))
-  },[user,allProd])
+    localStorage.setItem('product',JSON.stringify(products))
+  },[user,products])
+
+
+
+
+  
+
+
+
+  // const handProd = () =>{
+  //   if(!name && !price){
+  //     console.log("Error");
+  //   } else if(name && edit){
+  //     setAllprod(product.map((item) => {
+  //       if(item.id === editID){
+  //         return {...item, pname: name, price:price}
+  //       }
+  //       return item
+  //     }))
+
+  //   }else{
+  //     const newProd = { id:id, img:img, name:pname,price:price}
+  //     setAllprod([...allProd , newProd])
+  //   }
+    
+  // }
+
+
+
+
 
   return (
     <>
       <Navbar login={login} setLogin={setLogin} name={name} setName={setName} user={user} />
       { login ? <Login login={login} setLogin={setLogin} name={name} setName={setName} psw={psw} setPsw={setPsw} handSignIn={handSignIn} /> : <Err name={name} user={user} />}
-      { user.name ? <Products handEditId={handEditId} setId={setId} deleteProd={deleteProd} id={id} pname={pname} setPname={setPname} price={price} setPrice={setPrice} allProd={allProd} setAllprod={setAllprod} handProd={handProd} /> : <Err name={name} user={user} />}
+      { user.name ? <Products products={products} setProducts={setProducts} addProduct={addProduct} editProd={editProd} modal={modal} setModal={setModal} deleteProd={deleteProd} pname={pname} setPname={setPname} price={price} setPrice={setPrice} /> : <Err name={name} user={user} />}
     </>
   )
-}
+  }
 
 export default App

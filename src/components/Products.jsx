@@ -1,32 +1,35 @@
 
-function Products({pname,setPname,price,setPrice,handEditId,allProd,setAllprod,deleteProd,handProd,id,setId,getId}) {
+function Products({editProd,setModal,modal,pname,setPname,price,setPrice,products,deleteProd,addProduct}) {
     return (
         <div className="prodCont">
-            <div className="prodSide">
-                <input type="text" className="forI" value={id} onChange={(e)=>setId(e.target.value)} placeholder="Enter id" />
+            <form className="prodSide" onSubmit={addProduct}>
                 <input type="text" className="forP" value={pname} onChange={(e)=>setPname(e.target.value)} placeholder="Enter name" />
                 <input type="text" className="forP" value={price} onChange={(e)=>setPrice(e.target.value)} placeholder="Enter price"/>
-                <button onClick={()=>handProd()} className="addBtn">
+                <button className="addBtn">
                     Add product
                 </button>
                 
-            </div>
+            </form>
             <ul className="prodList">
-                {allProd.map((data)=>{
-                    return <div className='items' key={data.id}>
-                        <h2>
+                {products.map((data)=>{
+                    return <li className='items' key={data.id} >
+                        <img src={data.img} alt="" />
+                        <h2 className="prodName">
                             {data.name}
                         </h2>
-                        <h3>
+                        
+                        <h3 className="prodPrice">
                             {data.price}
                         </h3>
-                        <button onClick={()=>deleteProd(data.id)} >
-                            delete
-                        </button>
-                        <button onClick={()=>handEditId(data.id)}>
-                            Edit
-                        </button>
-                    </div>
+                        <div className="btns">
+                            <button onClick={()=>deleteProd(data.id)} >
+                                delete
+                            </button>
+                            <button onClick={()=>editProd(data.id)}>
+                                Edit
+                            </button>
+                        </div>
+                    </li>
                 })}
             </ul>
         </div>
