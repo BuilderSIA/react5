@@ -13,7 +13,8 @@ import Profile from './components/Profile';
 
 
 
-const img = 'https://picsum.photos/id/237/200/300';
+
+const img = 'https://picsum.photos/200/300?random';
 const getUser = getStore('user');
 const getProduct = getStore('product');
 
@@ -37,8 +38,10 @@ function App() {
   const [editID,setEditID] = useState(null);
   
 
+
   const id = uid();
 
+  
 
   const handSignIn = () =>{
     const newUser = { name: name, password: psw};
@@ -66,8 +69,6 @@ function App() {
   const signOut = () =>{
     localStorage.removeItem('user');
     location.pathname = '/'
-
- 
   }
 
 

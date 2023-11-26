@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 
 
 function Navbar({login , setLogin, name,user}) {
+
+
     return (
         <div className="navbar">
             <ul className="navlist">
