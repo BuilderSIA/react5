@@ -118,7 +118,9 @@ function App() {
                                             setPsw={setPsw} 
                                             handSignIn={handSignIn} 
                                             /> : < Profile 
-                                                  signOut={signOut} />}/>  
+                                                  signOut={signOut}
+                                                  user={user}
+                                                  setLogin={setLogin} />}/>  
       <Route path='products' element={ user.name ? <Products 
                                                     products={products} 
                                                     setProducts={setProducts} 

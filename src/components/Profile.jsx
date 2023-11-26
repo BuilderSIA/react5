@@ -1,12 +1,12 @@
 import React from 'react';
 
-function Profile({signOut}) {
+function Profile({signOut,user}) {
     return (
         <div>
             <h2>
-                Profile
+                {user.name ? 'Profile' : 'No user'}
             </h2>
-            <button onClick={()=>signOut()} >
+            <button onClick={()=>signOut()}>
                 Sign out
             </button>
         </div>

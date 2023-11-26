@@ -17,13 +17,13 @@ function Navbar({login , setLogin, name,user}) {
                     Products
                     </Link>
                 </li>
-                <li>
+                <div className="navBTN" >
                     <Link to={'login'} >
                     {!user.name ? <button onClick={()=> setLogin(!login)}>
-                        {user.name ? user.name : 'Sign in'}
+                        Sign in
                      </button> : <button> {user.name}</button>}
                     </Link>
-                </li>
+                </div>
                 
             </ul>
         </div>
