@@ -21,9 +21,9 @@ function Products({editProd,pname,setPname,price,setPrice,products,deleteProd,ad
                         <h3 className="prodPrice">
                             {data.price}$
                         </h3>
-                        <button className="moreBtn">
+                        <a href={data.id}>
                             more
-                        </button>
+                        </a>
                         </div>
                         <div className="btns">
                             <button onClick={()=>deleteProd(data.id)} >

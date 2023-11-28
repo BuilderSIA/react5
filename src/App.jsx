@@ -10,6 +10,8 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import moreInfo from './components/moreInfo';
+
 
 
 
@@ -37,12 +39,13 @@ function App() {
   const [modal,setModal] = useState(false);
   const [edit,setEdit] = useState(false);
   const [editID,setEditID] = useState(null);
-  
+  const [idMore, setIdMore] = useState('');
 
 
   const id = uid();
 
   
+
 
   const handSignIn = () =>{
     const newUser = { name: name, password: psw};
@@ -123,9 +126,11 @@ function App() {
                                                   signOut={signOut}
                                                   user={user}
                                                   setLogin={setLogin} />}/>  
+      <Route path=':id' element={ <moreInfo />} />
       <Route path='products' element={
       <ProtectedRoute user={user}>
                             <Products 
+                            
                             products={products} 
                             setProducts={setProducts} 
                             addProduct={addProduct} 

@@ -1,11 +1,11 @@
 
 import { useParams } from 'react-router-dom';
 
-function moreInfo(props) {
+function moreInfo() {
     const {id} = useParams()
     return (
         <div>
-            
+           <h2>Hello</h2>
         </div>
     );
 }
