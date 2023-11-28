@@ -198,8 +198,20 @@
     font-size: xx-large;
     text-align: center;
 }
-
-
+.item-con{
+    display: flex;
+    gap: 50px;
+    margin-bottom: 10px;
+}
+.moreBtn{
+    border: none;
+    background-color: #fff;
+}
+.moreBtn:hover{
+    border: 0.1px solid;
+    border-radius: 5px;
+}
+    
 
 
 

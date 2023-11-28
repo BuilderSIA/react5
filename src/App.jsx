@@ -4,19 +4,20 @@ import Login from './components/Login';
 import Navbar from './components/navbar';
 import Products from './components/Products';
 import Err from './components/err';
-import { getStore } from './Utilits';
+import { getStore, getUser } from './Utilits';
 import { uid } from 'uid';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Profile from './components/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 
 
 
 const img = 'https://picsum.photos/200/300?random';
-const getUser = getStore('user');
-const getProduct = getStore('product');
+
+
 
 
 
@@ -29,10 +30,10 @@ function App() {
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
   const [psw,setPsw] = useState('');
-  const [user,setUser] = useState(getUser);
+  const [user,setUser] = useState(getUser('user'));
   const [pname,setPname] = useState('');
   const [price,setPrice] = useState('');
-  const [products,setProducts] = useState(getProduct);
+  const [products,setProducts] = useState(getStore('product'));
   const [modal,setModal] = useState(false);
   const [edit,setEdit] = useState(false);
   const [editID,setEditID] = useState(null);
@@ -107,6 +108,7 @@ function App() {
     user={user} />
 
 
+
     <Routes>
     <Route path='/' element={<Home />}  />
       <Route path='login' element={ login ? <Login
@@ -121,21 +123,28 @@ function App() {
                                                   signOut={signOut}
                                                   user={user}
                                                   setLogin={setLogin} />}/>  
-      <Route path='products' element={ user.name ? <Products 
-                                                    products={products} 
-                                                    setProducts={setProducts} 
-                                                    addProduct={addProduct} 
-                                                    editProd={editProd} 
-                                                    modal={modal} 
-                                                    setModal={setModal} 
-                                                    deleteProd={deleteProd} 
-                                                    pname={pname} 
-                                                    setPname={setPname} 
-                                                    price={price} 
-                                                    setPrice={setPrice} 
-                                                    /> : <Err 
-                                                          name={name} 
-                                                          user={user} />} />
+      <Route path='products' element={
+      <ProtectedRoute user={user}>
+                            <Products 
+                            products={products} 
+                            setProducts={setProducts} 
+                            addProduct={addProduct} 
+                            editProd={editProd} 
+                            modal={modal} 
+                            setModal={setModal} 
+                            deleteProd={deleteProd} 
+                            pname={pname} 
+                            setPname={setPname} 
+                            price={price} 
+                            setPrice={setPrice} 
+                            />
+      </ProtectedRoute>
+      } />
+    
+    
+    
+    
+    
     </Routes>
     
       

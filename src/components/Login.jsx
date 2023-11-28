@@ -1,6 +1,6 @@
 
 
-function Login({login, setLogin, name, setName, psw, setPsw, handSignIn}){
+function Login({login, setLogin, name, setName, handSignIn}){
     return (
         <div className="logCont">
             <form className="login"  onSubmit={handSignIn}>

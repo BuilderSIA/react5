@@ -1,5 +1,5 @@
 
-function Err({name,user}) {
+function Err({user}) {
     return (
         <>
             {user.name ? <h2 className="prodTitle">

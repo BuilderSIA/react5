@@ -1,5 +1,5 @@
 
-function Products({editProd,setModal,modal,pname,setPname,price,setPrice,products,deleteProd,addProduct}) {
+function Products({editProd,pname,setPname,price,setPrice,products,deleteProd,addProduct}) {
     return (
         <div className="prodCont">
             <form className="prodSide" onSubmit={addProduct}>
@@ -17,10 +17,14 @@ function Products({editProd,setModal,modal,pname,setPname,price,setPrice,product
                         <h2 className="prodName">
                             {data.name}
                         </h2>
-                        
+                        <div className="item-con">
                         <h3 className="prodPrice">
-                            {data.price}
+                            {data.price}$
                         </h3>
+                        <button className="moreBtn">
+                            more
+                        </button>
+                        </div>
                         <div className="btns">
                             <button onClick={()=>deleteProd(data.id)} >
                                 delete
