@@ -1,5 +1,7 @@
+import { useGlobalContext } from "../context";
 
-function Products({editProd,pname,setPname,price,setPrice,products,deleteProd,addProduct}) {
+function Products() {
+    const {editProd,pname,setPname,price,setPrice,products,deleteProd,addProduct} = useGlobalContext();
     return (
         <div className="prodCont">
             <form className="prodSide" onSubmit={addProduct}>
@@ -22,7 +24,7 @@ function Products({editProd,pname,setPname,price,setPrice,products,deleteProd,ad
                             {data.price}$
                         </h3>
                         <a href={data.id}>
-                            more
+                            info
                         </a>
                         </div>
                         <div className="btns">

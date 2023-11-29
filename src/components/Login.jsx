@@ -1,6 +1,8 @@
+import { useGlobalContext } from "../context";
 
 
-function Login({login, setLogin, name, setName, handSignIn}){
+function Login(){
+    const {login, setLogin, name, setName, handSignIn} = useGlobalContext()
     return (
         <div className="logCont">
             <form className="login"  onSubmit={handSignIn}>

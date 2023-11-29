@@ -1,6 +1,8 @@
 import React from 'react';
+import { useGlobalContext } from '../context';
 
-function Profile({signOut,user}) {
+function Profile() {
+    const {signOut,user} = useGlobalContext();
     return (
         <div>
             <h2>

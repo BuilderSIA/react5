@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context";
 
 
-function Navbar({login , setLogin, name,user}) {
-
+function Navbar() {
+    const {login , setLogin,user} = useGlobalContext()
 
     return (
         <div className="navbar">
