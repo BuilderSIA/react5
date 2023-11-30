@@ -8,17 +8,12 @@ function MoreInfo() {
     return (
        <>
             <img src={singleProd.img} alt="" />
-            <h2 className="prodName">
+            <h2>
                 {singleProd.name}
             </h2>
-            <div className="item-con">
-            <h3 className="prodPrice">
+            <h3>
                 {singleProd.price}$
             </h3>
-            <a href={singleProd.id}>
-                more
-            </a>
-            </div> 
         </>          
     );
 }
