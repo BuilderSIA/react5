@@ -18,6 +18,11 @@ function Navbar() {
                     Products
                     </Link>
                 </li>
+                <li>
+                    <Link to='cards' >
+                    Cards
+                    </Link>
+                </li>
                 <div className="navBTN" >
                     <Link to={'login'} >
                     {!user.name ? <button onClick={()=> setLogin(!login)}>

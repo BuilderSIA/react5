@@ -1,15 +1,40 @@
-import { createContext, useContext, useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { uid } from "uid";
 import { getStore, getUser } from "./Utilits";
+import { reducer } from "./reducer";
+import data from "./components/data";
+
+
+
+const initialState = {
+  amount: 0,
+  loading: false,
+  total: 0,
+  cart: data,
+};
+
+
 
 export const AppContext = createContext();
 
 export const AppProvider = ({children}) =>{
-    const toCent =  document.querySelector('.prodCont');
-    const toNone =  document.querySelector('.prodList');
+
+    const [state,dispatch] = useReducer(reducer, initialState);
+
+
+
+    const clearCart = () =>{
+      dispatch({type: "CLEAR"})
+    }
+
+    // const toCent =  document.querySelector('.prodCont');
+    // const toNone =  document.querySelector('.prodList');
     const [login, setLogin] = useState(false);
     const [name,setName] = useState('');
-    const [email,setEmail] = useState('');
+    // const [email,setEmail] = useState('');
     const [psw,setPsw] = useState('');
     const [user,setUser] = useState(getUser('user'));
     const [pname,setPname] = useState('');
@@ -70,6 +95,7 @@ export const AppProvider = ({children}) =>{
   
     return (
         <AppContext.Provider value={{
+            ...state,
             name, setName,
             psw, setPsw,
             id, img,
@@ -82,7 +108,8 @@ export const AppProvider = ({children}) =>{
             products, setProducts,
             addProduct, editProd,
             deleteProd, signOut,
-            handSignIn
+            handSignIn, useEffect,
+            clearCart
 
         }}>
             {children}

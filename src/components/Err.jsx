@@ -1,5 +1,7 @@
+import { useGlobalContext } from "../context";
 
-function Err({user}) {
+function Err() {
+    const {user} = useGlobalContext();
     return (
         <>
             {user.name ? <h2 className="prodTitle">
