@@ -11,7 +11,9 @@ function App() {
 <Routes>
     <Route path='*' element={ <Err/>}/>
     <Route path='/' element={<Home />}  />
-    <Route path='cards' element={<Cards/>}/>
+    <Route path='cards' element={<ProtectedRoute>
+      <Cards/>
+    </ProtectedRoute>}/>
       <Route path='login' element={ login ? <Login/> : < Profile/>}/>  
       <Route path=':id' element={<MoreInfo/>} />
       <Route path='products' element={
