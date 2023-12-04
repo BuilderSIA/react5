@@ -29,6 +29,7 @@ export const AppProvider = ({children}) =>{
     const clearCart = () =>{
       dispatch({type: "CLEAR"})
     }
+    
 
     // const toCent =  document.querySelector('.prodCont');
     // const toNone =  document.querySelector('.prodList');
